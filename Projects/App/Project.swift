@@ -8,13 +8,6 @@
 import ProjectDescriptionHelpers
 import ProjectDescription
 
-let infoPlist: [String: InfoPlist.Value] = [
-    "CFBundleShortVersionString": "1.0",
-    "CFBundleVersion": "1",
-    "UIMainStoryboardFile": "",
-    "UILaunchStoryboardName": "LaunchScreen"
-    ]
-
 let project = Project(
     name: "ClubSupporter",
     organizationName: "ClubSupporter",
@@ -24,7 +17,11 @@ let project = Project(
             platform: .iOS,
             product: .app,
             bundleId: "com.ClubSupporter.kor",
-            infoPlist: .default,
+            infoPlist: .extendingDefault(with: [
+                "CFBundleShortVersionString": "1.0",
+                "CFBundleVersion": "1",
+                "UILaunchStoryboardName": "LaunchScreen"
+            ]),
             sources: ["Sources/**"],
             resources: ["Resources/**"],
             dependencies: [
