@@ -6,6 +6,7 @@ import ProjectDescription
 /// See https://docs.tuist.io/guides/helpers/
 
 extension Project {
+    private static let organizationName = "com.clubsupporter.kor"
     /// Helper function to create the Project for this ExampleApp
     public static func app(name: String, platform: Platform, additionalTargets: [String]) -> Project {
         var targets = makeAppTargets(name: name,
@@ -13,7 +14,7 @@ extension Project {
                                      dependencies: additionalTargets.map { TargetDependency.target(name: $0) })
         targets += additionalTargets.flatMap({ makeFrameworkTargets(name: $0, platform: platform) })
         return Project(name: name,
-                       organizationName: "tuist.io",
+                       organizationName: organizationName,
                        targets: targets)
     }
 
@@ -26,7 +27,7 @@ extension Project {
                 product: .framework,
                 bundleId: "io.tuist.\(name)",
                 infoPlist: .default,
-                sources: ["Targets/\(name)/Sources/**"],
+                sources: ["Sources/**"],
                 resources: [],
                 dependencies: [])
         let tests = Target(name: "\(name)Tests",
@@ -34,7 +35,7 @@ extension Project {
                 product: .unitTests,
                 bundleId: "io.tuist.\(name)Tests",
                 infoPlist: .default,
-                sources: ["Targets/\(name)/Tests/**"],
+                sources: ["Tests/**"],
                 resources: [],
                 dependencies: [.target(name: name)])
         return [sources, tests]
@@ -72,5 +73,42 @@ extension Project {
                 .target(name: "\(name)")
         ])
         return [mainTarget, testTarget]
+    }
+}
+
+extension Project {
+    public static func app(name: String,
+                           platform: Platform,
+                           dependencies: [TargetDependency] = []) -> Project {
+        let targets = makeAppTargets(name: name,
+                                     platform: platform,
+                                     dependencies: dependencies)
+        return Project(name: name,
+                       organizationName: organizationName,
+                       targets: targets)
+    }
+
+    public static func frameworkWithDemoApp(name: String,
+                                            platform: Platform,
+                                            dependencies: [TargetDependency] = []) -> Project {
+        var targets = makeFrameworkTargets(name: name,
+                                           platform: platform)
+        targets.append(contentsOf: makeAppTargets(name: "\(name)DemoApp",
+                                                  platform: platform,
+                                                  dependencies: [.target(name: name)]))
+
+        return Project(name: name,
+                       organizationName: organizationName,
+                       targets: targets)
+    }
+
+    public static func framework(name: String,
+                                 platform: Platform,
+                                 dependencies: [TargetDependency] = []) -> Project {
+        let targets = makeFrameworkTargets(name: name,
+                                           platform: platform)
+        return Project(name: name,
+                       organizationName: organizationName,
+                       targets: targets)
     }
 }

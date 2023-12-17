@@ -24,6 +24,13 @@ import MyPlugin
 let localHelper = LocalHelper(name: "MyPlugin")
 
 // Creates our project using a helper function defined in ProjectDescriptionHelpers
-let project = Project.app(name: "ClubSupporter",
-                          platform: .iOS,
-                          additionalTargets: ["ClubSupporterKit", "ClubSupporterUI"])
+//let project = Project.app(name: "ClubSupporter",
+//                          platform: .iOS,
+//                          additionalTargets: ["ClubSupporterKit", "ClubSupporterUI"])
+
+let workspace = Workspace(
+    name: "ClubSupporter",
+    projects: [
+        "Projects/**"
+    ]
+)

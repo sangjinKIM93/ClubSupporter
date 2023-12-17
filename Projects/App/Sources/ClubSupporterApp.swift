@@ -1,11 +1,11 @@
 import SwiftUI
-import ClubSupporterUI
+//import ClubSupporterUI
 
 @main
 struct ClubSupporterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SignInView()
         }
     }
 }
