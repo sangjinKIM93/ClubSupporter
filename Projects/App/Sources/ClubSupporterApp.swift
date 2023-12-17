@@ -1,5 +1,5 @@
 import SwiftUI
-//import ClubSupporterUI
+import ClubSupporterUI
 
 @main
 struct ClubSupporterApp: App {

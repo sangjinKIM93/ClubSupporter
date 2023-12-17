@@ -8,12 +8,8 @@
 import SwiftUI
 import AuthenticationServices
 
-public struct AppleSignInButton: View {
-    public init() {
-        
-    }
-    
-    public var body: some View {
+struct AppleSignInButton: View {
+   var body: some View {
         SignInWithAppleButton(
                     onRequest: { request in
                         request.requestedScopes = [.fullName, .email]

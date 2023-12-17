@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
-import ClubSupporterUI
 
-struct SignInView: View {
-    var body: some View {
+public struct SignInView: View {
+    public init() {}
+    
+    public var body: some View {
         VStack {
             AppleSignInButton()
         }
