@@ -25,7 +25,7 @@ let project = Project(
             sources: ["Sources/**"],
             resources: ["Resources/**"],
             dependencies: [
-                .project(target: "ClubSupporterUI", path: .relativeToCurrentFile("../UI"))
+                .project(target: "SignIn", path: .relativeToCurrentFile("../SignIn"))
             ]
         )
     ]

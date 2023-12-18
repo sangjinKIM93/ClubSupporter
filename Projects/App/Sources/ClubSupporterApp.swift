@@ -1,5 +1,5 @@
 import SwiftUI
-import ClubSupporterUI
+import SignIn
 
 @main
 struct ClubSupporterApp: App {
