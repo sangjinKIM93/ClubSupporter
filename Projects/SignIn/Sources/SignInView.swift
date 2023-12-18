@@ -13,6 +13,7 @@ public struct SignInView: View {
     
     public var body: some View {
         VStack {
+            KakaoSignInButton()
             AppleSignInButton()
         }
     }

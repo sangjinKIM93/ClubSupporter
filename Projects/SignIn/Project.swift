@@ -12,6 +12,9 @@ let project = Project.framework(
     name: "SignIn",
     platform: .iOS,
     dependencies: [
-        .project(target: "CustomUI", path: .relativeToCurrentFile("../CustomUI"))
+        .project(target: "CustomUI", path: .relativeToCurrentFile("../CustomUI")),
+        .external(name: "KakaoSDKCommon"),
+        .external(name: "KakaoSDKAuth"),
+        .external(name: "KakaoSDKUser"),
     ]
 )

@@ -21,7 +21,7 @@ extension Project {
     // MARK: - Private
 
     /// Helper function to create a framework target and an associated unit test target
-    private static func makeFrameworkTargets(name: String, platform: Platform) -> [Target] {
+    private static func makeFrameworkTargets(name: String, platform: Platform, dependencies: [TargetDependency] = []) -> [Target] {
         let sources = Target(name: name,
                 platform: platform,
                 product: .framework,
@@ -29,7 +29,7 @@ extension Project {
                 infoPlist: .default,
                 sources: ["Sources/**"],
                 resources: [],
-                dependencies: [])
+                dependencies: dependencies)
         let tests = Target(name: "\(name)Tests",
                 platform: platform,
                 product: .unitTests,
@@ -37,7 +37,7 @@ extension Project {
                 infoPlist: .default,
                 sources: ["Tests/**"],
                 resources: [],
-                dependencies: [.target(name: name)])
+                dependencies: dependencies)
         return [sources, tests]
     }
 
@@ -106,7 +106,8 @@ extension Project {
                                  platform: Platform,
                                  dependencies: [TargetDependency] = []) -> Project {
         let targets = makeFrameworkTargets(name: name,
-                                           platform: platform)
+                                           platform: platform,
+                                           dependencies: dependencies)
         return Project(name: name,
                        organizationName: organizationName,
                        targets: targets)
