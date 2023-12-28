@@ -62,17 +62,17 @@ extension Project {
             dependencies: dependencies
         )
 
-        let testTarget = Target(
-            name: "\(name)Tests",
-            platform: platform,
-            product: .unitTests,
-            bundleId: "io.tuist.\(name)Tests",
-            infoPlist: .default,
-            sources: ["Targets/\(name)/Tests/**"],
-            dependencies: [
-                .target(name: "\(name)")
-        ])
-        return [mainTarget, testTarget]
+        // let testTarget = Target(
+        //     name: "\(name)Tests",
+        //     platform: platform,
+        //     product: .unitTests,
+        //     bundleId: "io.tuist.\(name)Tests",
+        //     infoPlist: .default,
+        //     sources: ["Targets/\(name)/Tests/**"],
+        //     dependencies: [
+        //         .target(name: "\(name)")
+        // ])
+        return [mainTarget]
     }
 }
 
